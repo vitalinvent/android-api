@@ -1,0 +1,28 @@
+package ru.kassatka.comepay_sdk.sql.tables_enums;
+
+public enum ProductModelField {
+  _id,
+  EXT_ID,
+  BARCODE,
+  NAME,
+  GROUP,
+  COLOR,
+  PRIORITY,
+  FREE_PRICE,
+  FREE_SALE,
+  VAT_TYPE,
+  PRICE,
+  UNIT,
+  AGENT_TYPE,
+  GOOD_ATTRIBUTES_TYPE,
+  IS_FAVOURITE,
+  IS_REMAINDERS_CONTROL,
+  CURRENT_REMAINDERS,
+  IS_HIDE_ON_SALE,
+  ALCOHOL_BY_VOLUME,
+  ALCOHOL_PRODUCT_KIND_CODE,
+  TARE_VOLUME,
+  TAX_MODE,
+  PRODUCT_TYPE,
+  ALL
+}
