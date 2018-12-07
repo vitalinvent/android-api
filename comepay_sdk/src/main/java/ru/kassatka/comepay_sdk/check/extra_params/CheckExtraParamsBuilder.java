@@ -33,7 +33,7 @@ public class CheckExtraParamsBuilder {
    *
    * @param context - context for sending broadcast.
    */
-  CheckExtraParamsBuilder(Context context) {
+  public CheckExtraParamsBuilder(Context context) {
     this.context = context;
   }
 
