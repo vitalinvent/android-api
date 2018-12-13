@@ -1,6 +1,8 @@
-package ru.kassatka.loyalty_4client.loyalty.models;
+package ru.kassatka.comepay_sdk.loyalty.models;
 
-/** Enum for different workplaces enumeration */
+/**
+ * Enum for different workplaces enumeration
+ */
 public enum WorkplaceTypes {
   WORKPLACE("WORKPLACE"),
   CLIENT("CLIENT"),

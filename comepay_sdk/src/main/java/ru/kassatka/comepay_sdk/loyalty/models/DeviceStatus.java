@@ -1,11 +1,13 @@
-package ru.kassatka.loyalty_4client.loyalty.models;
+package ru.kassatka.comepay_sdk.loyalty.models;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 /**
  * Device status response from kassatka urls.
  */
-public class DeviceStatus {
+public class DeviceStatus implements Serializable {
 
   public boolean success;
 

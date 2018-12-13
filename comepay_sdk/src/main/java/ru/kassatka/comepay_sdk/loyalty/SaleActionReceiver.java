@@ -1,4 +1,4 @@
-package ru.kassatka.loyalty_4client.loyalty;
+package ru.kassatka.comepay_sdk.loyalty;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.content.Intent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import ru.kassatka.loyalty_4client.loyalty.models.SaleModel;
+import ru.kassatka.comepay_sdk.loyalty.models.SaleModel;
 
 
 public class SaleActionReceiver extends BroadcastReceiver {

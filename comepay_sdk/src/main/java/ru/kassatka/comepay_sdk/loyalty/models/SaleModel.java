@@ -1,10 +1,11 @@
-package ru.kassatka.loyalty_4client.loyalty.models;
+package ru.kassatka.comepay_sdk.loyalty.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SaleModel {
+public class SaleModel implements Serializable {
   public String store;
 
   @SerializedName("sale_sum")
