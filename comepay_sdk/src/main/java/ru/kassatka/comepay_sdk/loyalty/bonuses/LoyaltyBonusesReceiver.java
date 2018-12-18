@@ -27,24 +27,32 @@ public class LoyaltyBonusesReceiver extends BroadcastReceiver {
     listener =
         new Listener() {
           @Override
-          public void receivedTotalPrice(BigDecimal totalPrice) {
+          public void receivedTotalPrice(String cardNumber, BigDecimal totalPrice) {
             Log.d(
                 LoyaltyBonusesReceiver.class.getName(),
-                "Total price was received: " + totalPrice.doubleValue() + ".");
+                "Total price for card number "
+                    + cardNumber
+                    + " was received: "
+                    + totalPrice.doubleValue()
+                    + ".");
           }
 
           @Override
-          public void receivedBonusesWriteOffAction(BigDecimal bonuses) {
+          public void receivedBonusesWriteOffAction(String cardNumber, BigDecimal bonuses) {
             Log.d(
                 LoyaltyBonusesReceiver.class.getName(),
-                "Bonuses write off action was received: " + bonuses.doubleValue() + ".");
+                "Bonuses write off action  for card number"
+                    + cardNumber
+                    + " was received: "
+                    + bonuses.doubleValue()
+                    + ".");
           }
 
           @Override
-          public void receivedAllBonusesWriteOffAction() {
+          public void receivedAllBonusesWriteOffAction(String cardNumber) {
             Log.d(
                 LoyaltyBonusesReceiver.class.getName(),
-                "All bonuses write off action was received.");
+                "All bonuses write off action for card number " + cardNumber + " was received.");
           }
         };
   }
@@ -61,17 +69,18 @@ public class LoyaltyBonusesReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
     String action = intent.getAction();
+    String cardNumber = intent.getStringExtra(CARD_NUMBER);
     switch (action) {
       case LOYALTY_TOTAL_PRICE:
         BigDecimal totalPrice = (BigDecimal) intent.getSerializableExtra(TOTAL_PRICE);
-        listener.receivedTotalPrice(totalPrice);
+        listener.receivedTotalPrice(cardNumber, totalPrice);
         break;
       case BONUSES_WRITE_OFF:
         BigDecimal bonuses = (BigDecimal) intent.getSerializableExtra(BONUSES);
-        listener.receivedBonusesWriteOffAction(bonuses);
+        listener.receivedBonusesWriteOffAction(cardNumber, bonuses);
         break;
       case BONUSES_WRITE_OFF_ALL:
-        listener.receivedAllBonusesWriteOffAction();
+        listener.receivedAllBonusesWriteOffAction(cardNumber);
         break;
       default:
         break;
@@ -85,17 +94,23 @@ public class LoyaltyBonusesReceiver extends BroadcastReceiver {
      * Event called upon received check total price.
      *
      * @param totalPrice - check total price.
+     * @param cardNumber - client loyalty card number.
      */
-    void receivedTotalPrice(BigDecimal totalPrice);
+    void receivedTotalPrice(String cardNumber, BigDecimal totalPrice);
 
     /**
      * Event called upon bonuses write off action need.
      *
-     * @param bonuses - written off bonuses
+     * @param bonuses - written off bonuses.
+     * @param cardNumber - client loyalty card number.
      */
-    void receivedBonusesWriteOffAction(BigDecimal bonuses);
+    void receivedBonusesWriteOffAction(String cardNumber, BigDecimal bonuses);
 
-    /** Event called upon all bonuses write off action need. */
-    void receivedAllBonusesWriteOffAction();
+    /**
+     * Event called upon all bonuses write off action need.
+     *
+     * @param cardNumber - client loyalty card number.
+     */
+    void receivedAllBonusesWriteOffAction(String cardNumber);
   }
 }
