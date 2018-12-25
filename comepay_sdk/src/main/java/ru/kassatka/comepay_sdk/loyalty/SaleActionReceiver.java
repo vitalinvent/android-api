@@ -17,7 +17,7 @@ public class SaleActionReceiver extends BroadcastReceiver {
   private Listener listener;
 
   public interface Listener {
-    void saleActionReceived(String cardNumber, SaleModel saleModel);
+    void saleActionReceived(String cardNumber, SaleModel saleModel, String packageName);
   }
 
   public SaleActionReceiver(Listener listener) {
@@ -26,6 +26,7 @@ public class SaleActionReceiver extends BroadcastReceiver {
 
   private static final String DATA = "DATA";
   private static final String CARD_NUMBER = "CARD_NUMBER";
+  private static final String PACKAGE_NAME = "PACKAGE_NAME";
 
   @Override
   public void onReceive(Context context, Intent intent) {
@@ -34,12 +35,13 @@ public class SaleActionReceiver extends BroadcastReceiver {
       case ACTION_SALE:
         String data = intent.getStringExtra(DATA);
         String cardNumber = intent.getStringExtra(CARD_NUMBER);
+        String packageName = intent.getStringExtra(PACKAGE_NAME);
         Gson gson =
             new GsonBuilder()
                 .enableComplexMapKeySerialization()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
-        listener.saleActionReceived(cardNumber, gson.fromJson(data, SaleModel.class));
+        listener.saleActionReceived(cardNumber, gson.fromJson(data, SaleModel.class), PACKAGE_NAME);
         break;
       default:
     }
