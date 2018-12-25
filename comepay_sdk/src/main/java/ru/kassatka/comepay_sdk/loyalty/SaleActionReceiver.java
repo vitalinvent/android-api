@@ -41,7 +41,7 @@ public class SaleActionReceiver extends BroadcastReceiver {
                 .enableComplexMapKeySerialization()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
-        listener.saleActionReceived(cardNumber, gson.fromJson(data, SaleModel.class), PACKAGE_NAME);
+        listener.saleActionReceived(cardNumber, gson.fromJson(data, SaleModel.class), packageName);
         break;
       default:
     }
