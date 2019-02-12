@@ -13,7 +13,6 @@ import ru.kassatka.comepay_sdk.callBack.CallBack;
 import ru.kassatka.comepay_sdk.callBack.CallbackHandler;
 import ru.kassatka.comepay_sdk.model.Complex;
 import ru.kassatka.comepay_sdk.model.Extra;
-import ru.kassatka.comepay_sdk.model.ProductItems;
 
 
 /**

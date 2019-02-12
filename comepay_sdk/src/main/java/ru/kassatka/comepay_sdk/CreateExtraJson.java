@@ -41,8 +41,51 @@ public final class CreateExtraJson {
                     productJson.addProperty("ExtId", item.extId);
                     productJson.addProperty("Price", item.price);
                     productJson.addProperty("Qty", item.count);
-                    productJson.addProperty("SubTotal", 0);
-                    productJson.addProperty("TaxId",  item.taxMode);
+                    switch (item.taxMode) {
+                        case DEFAULT:
+                            productJson.addProperty("TaxMode", 0);
+                            break;
+
+                        case COMMON:
+                            productJson.addProperty("TaxMode", 1);
+                            break;
+
+                        case SIMPLIFIED_INCOME:
+                            productJson.addProperty("TaxMode", 2);
+                            break;
+
+                        case SIMPLIFIED_INCOME_OUTCOME:
+                            productJson.addProperty("TaxMode", 4);
+                            break;
+
+                        case SINGLE_IMPUTED_INCOME:
+                            productJson.addProperty("TaxMode", 8);
+                            break;
+
+                        case SINGLE_AGRICULTURE:
+                            productJson.addProperty("TaxMode", 16);
+                            break;
+
+                        case PATENT:
+                            productJson.addProperty("TaxMode", 32);
+                            break;
+                    }
+                    if(item.subtotal > 0)
+                        productJson.addProperty("SubTotal", item.subtotal);
+                    switch (item.vatType){
+                        case NONE:
+                            productJson.addProperty("TaxId", 4);
+                            break;
+                        case VAT_0:
+                            productJson.addProperty("TaxId", 3);
+                            break;
+                        case VAT_10:
+                            productJson.addProperty("TaxId", 2);
+                            break;
+                        case VAT_20:
+                            productJson.addProperty("TaxId", 1);
+                            break;
+                    }
                     addProductJson(productJson);
                 }
 

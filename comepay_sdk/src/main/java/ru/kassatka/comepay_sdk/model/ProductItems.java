@@ -10,7 +10,7 @@ import java.math.RoundingMode;
  * Created by sokolov on 23.07.2018.
  */
 
-public class ProductItems {
+public  class ProductItems {
 
     public String name;
 
@@ -19,6 +19,7 @@ public class ProductItems {
     public int color;
     public int priority;
     public int count;
+    public int subtotal;
     public boolean freePrice = false;
     public boolean freeSale = false;
     public VatType vatType = VatType.NONE;
@@ -29,7 +30,7 @@ public class ProductItems {
     public GoodAttributesType goodAttributesType;
     public boolean isRemaindersControl;
     public double currentRemainders;
-    public int taxMode = 1;
+    public TaxMode taxMode = TaxMode.DEFAULT;
     public ProductType productType;
 
     public double alcoholByVolume; //Крепость.
@@ -59,13 +60,13 @@ public class ProductItems {
     }
 
     public enum TaxMode {
-        DEFAULT, //по умолчанию
-        COMMON, //Общая
-        SIMPLIFIED_INCOME, //    Упрощённая доход
-        SIMPLIFIED_INCOME_OUTCOME, //Упрощённая доход минус расход
-        SINGLE_IMPUTED_INCOME, //Единый налог на вменённый доход
-        SINGLE_AGRICULTURE, //Единый сельскохозяйственный налог
-        PATENT // Патентная система налогообложения
+        DEFAULT, //по умолчанию (0)
+        COMMON, //Общая(1)
+        SIMPLIFIED_INCOME, //    Упрощённая доход(2)
+        SIMPLIFIED_INCOME_OUTCOME, //Упрощённая доход минус расход(4)
+        SINGLE_IMPUTED_INCOME, //Единый налог на вменённый доход(8)
+        SINGLE_AGRICULTURE, //Единый сельскохозяйственный налог(16)
+        PATENT // Патентная система налогообложения(32)
     }
 
     public enum AgentType {
@@ -77,52 +78,6 @@ public class ProductItems {
         ATTORNEY,
         COMMISSION_AGENT,
         AGENT;
-    }
-
-    public enum VatType {
-        NONE("Нет"),
-        VAT_0("0%"),
-        VAT_10("10%"),
-        VAT_18("18%");
-
-        public final String name;
-
-        VatType(String name) {
-            this.name = name;
-        }
-
-        public static BigDecimal calcVatSumIncluding(BigDecimal sum, VatType vatType) {
-            switch (vatType) {
-                case NONE:
-                    return BigDecimal.ZERO;
-                case VAT_0:
-                    return BigDecimal.ZERO;
-                case VAT_10:
-                    return (sum.divide(BigDecimal.valueOf(1.10D), 2, RoundingMode.DOWN)).multiply(BigDecimal.valueOf(0.10D));
-                case VAT_18:
-                    return (sum.divide(BigDecimal.valueOf(1.18D), 2, RoundingMode.DOWN)).multiply(BigDecimal.valueOf(0.18D));
-            }
-            return BigDecimal.ZERO;
-        }
-
-        public static double getPercentByType(VatType vatType) {
-            switch (vatType) {
-                case NONE:
-                    return 0D;
-                case VAT_0:
-                    return 0D;
-                case VAT_10:
-                    return 10D;
-                case VAT_18:
-                    return 18D;
-            }
-            return 0D;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
     }
 
 
@@ -155,4 +110,13 @@ public class ProductItems {
         }
 
     }
+
+    public enum VatType {
+        NONE,
+        VAT_0,
+        VAT_10,
+        VAT_20;
+    }
 }
+
+
