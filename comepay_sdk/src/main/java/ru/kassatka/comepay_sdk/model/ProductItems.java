@@ -10,7 +10,7 @@ import java.math.RoundingMode;
  * Created by sokolov on 23.07.2018.
  */
 
-public  class ProductItems {
+public  class ProductItems implements Item {
 
     public String name;
 

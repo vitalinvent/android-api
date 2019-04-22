@@ -2,6 +2,7 @@ package ru.kassatka.comepay_sdk;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -18,7 +19,7 @@ import ru.kassatka.comepay_sdk.model.ProductItems;
 public final class CreateExtraJson {
     static JsonArray array;
 
-    public static String createJson(JsonObject json, Context context){
+    public static String createJson(JsonObject json, Context context) {
         try {
             json.addProperty("PACKAGE", context.getPackageName());
             return new String(json.toString().getBytes("UTF-8"), "UTF-8");
@@ -28,7 +29,8 @@ public final class CreateExtraJson {
         }
     }
 
-    public static JsonArray createProduct(ArrayList<ProductItems> items){
+
+    public static JsonArray createProduct(ArrayList<ProductItems> items) {
         array = new JsonArray();
         if (items.size() > 0) {
             try {
@@ -70,9 +72,9 @@ public final class CreateExtraJson {
                             productJson.addProperty("TaxMode", 32);
                             break;
                     }
-                    if(item.subtotal > 0)
+                    if (item.subtotal > 0)
                         productJson.addProperty("SubTotal", item.subtotal);
-                    switch (item.vatType){
+                    switch (item.vatType) {
                         case NONE:
                             productJson.addProperty("TaxId", 4);
                             break;
@@ -100,4 +102,25 @@ public final class CreateExtraJson {
     private static void addProductJson(JsonObject jsonObject) {
         array.add(jsonObject);
     }
+
+    public static String createJsonFromArrayList(ArrayList<Object> objects) {
+        String retVal="";
+        try {
+            retVal = new Gson().toJson(objects);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return retVal;
+    }
+
+    public static String createJsonFromArrayList(Object obj) {
+        String retVal="";
+        try {
+            retVal = new Gson().toJson(obj);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return retVal;
+    }
+
 }
