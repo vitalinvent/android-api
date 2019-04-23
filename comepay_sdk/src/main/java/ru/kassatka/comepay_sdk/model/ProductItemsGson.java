@@ -3,7 +3,7 @@ package ru.kassatka.comepay_sdk.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ProductItemsGson extends ProductItems implements Parcelable {
+public class ProductItemsGson extends ProductItems implements Parcelable,Item {
 
     protected ProductItemsGson(Parcel in) {
     }

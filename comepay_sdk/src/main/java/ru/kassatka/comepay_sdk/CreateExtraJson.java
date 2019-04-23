@@ -103,7 +103,7 @@ public final class CreateExtraJson {
         array.add(jsonObject);
     }
 
-    public static String createJsonFromArrayList(ArrayList<Object> objects) {
+    public static String createJson(ArrayList<Object> objects) {
         String retVal="";
         try {
             retVal = new Gson().toJson(objects);
@@ -113,7 +113,7 @@ public final class CreateExtraJson {
         return retVal;
     }
 
-    public static String createJsonFromArrayList(Object obj) {
+    public static String createJson(Object obj) {
         String retVal="";
         try {
             retVal = new Gson().toJson(obj);

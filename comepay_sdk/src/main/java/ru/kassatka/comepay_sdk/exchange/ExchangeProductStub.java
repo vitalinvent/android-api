@@ -5,32 +5,26 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import ru.kassatka.comepay_sdk.callBack.CallBack;
+import ru.kassatka.comepay_sdk.model.Extra;
 import ru.kassatka.comepay_sdk.model.Item;
 
-public class Exchange implements ExchangesInteface {
+public class ExchangeProductStub implements ExchangesInteface {
 
-    private ExchangesInteface exchangesEngine;
+
+    private Extra extra;
     private Context context;
+    private CallBack callBack;
+    private String packageNameReceiver;
 
-    public Exchange(ExchangeType exchangeType, Context context,String packageNameReceiver) {
-        switch (exchangeType){
-            case PRODUCTS:
-                exchangesEngine=new ExchangeProductEngine(context, packageNameReceiver);
-                break;
-            case DISCOUNTS:
-                break;
-            case STUB:
-                exchangesEngine=new ExchangeProductStub(context, packageNameReceiver);
-                break;
-                default:
-                    break;
-        }
+    public ExchangeProductStub(Context context,String packageNameReceiver) {
+        this.extra = new Extra();
         this.context = context;
+        this.packageNameReceiver = packageNameReceiver;
     }
 
     @Override
     public void Send(ArrayList<Item> productItems, CallBack callBack) {
-        exchangesEngine.Send(productItems, callBack);
+
     }
 
     @Override
@@ -40,17 +34,17 @@ public class Exchange implements ExchangesInteface {
 
     @Override
     public void Send(Item item, CallBack callBack) {
-        exchangesEngine.Send(item, callBack);
+
     }
 
     @Override
     public void Send(Object obj, CallBack callBack) {
-        exchangesEngine.Send(obj, callBack);
+
     }
 
     @Override
     public void Send() {
-        exchangesEngine.Send();
+
     }
 
     @Override
@@ -86,11 +80,5 @@ public class Exchange implements ExchangesInteface {
     @Override
     public void NewExtra() {
 
-    }
-
-    public enum ExchangeType {
-        PRODUCTS,
-        DISCOUNTS,
-        STUB
     }
 }

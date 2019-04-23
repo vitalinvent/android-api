@@ -1,34 +1,32 @@
 package ru.kassatka.comepay_sdk.exchange;
 
-import android.content.Context;
-
 import java.util.ArrayList;
-
 import ru.kassatka.comepay_sdk.callBack.CallBack;
 import ru.kassatka.comepay_sdk.model.Item;
-import ru.kassatka.comepay_sdk.model.ProductItems;
 
 public interface ExchangesInteface {
 
-   void Send(Context context, ArrayList<Item> productItems, String packageName, CallBack callBack);
+   void Send(ArrayList<Item> items, CallBack callBack);
 
-   void Send(Context context, Item item, String packageName, CallBack callBack);
+   void Send(ArrayList<Item> items);
 
-   void Send(Context context, Object obj, String packageName, CallBack callBack);
+   void Send(Item item, CallBack callBack);
 
-   void Send(Context context);
+   void Send(Object obj, CallBack callBack);
 
-   void Send(Object obj, String packageName);
+   void Send();
 
-   void Add(Context context, Item item, String packageName, CallBack callBack);
+   void Send(Object obj);
 
-   void Add(Context context, Object obj, String packageName, CallBack callBack);
+   void AddExtra(Item item, CallBack callBack);
 
-   void Add(Object obj, String packageName);
+   void AddExtra(Object obj, CallBack callBack);
 
-   void Del(Context context, Object obj, String packageName, CallBack callBack);
+   void AddExtra(Object obj);
 
-   void Del(Context context, Item item, String packageName, CallBack callBack);
+   void DelExtra(Object obj, CallBack callBack);
+
+   void DelExtra(Item item, CallBack callBack);
 
    void NewExtra();
 }
