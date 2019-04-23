@@ -7,8 +7,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
+import ru.kassatka.comepay_sdk.model.Item;
 import ru.kassatka.comepay_sdk.model.ProductItems;
 
 
@@ -123,4 +126,8 @@ public final class CreateExtraJson {
         return retVal;
     }
 
+    public static List<Item> DeserializeJsomStringToListItems(String jsonItems){
+        Gson gson = new Gson();
+        return gson.fromJson(jsonItems, (Type) Item.class);
+    }
 }
