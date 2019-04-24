@@ -126,8 +126,14 @@ public final class CreateExtraJson {
         return retVal;
     }
 
-    public static List<Item> DeserializeJsomStringToListItems(String jsonItems){
+    public static Item[] DeserializeJsomStringToListItems(String jsonItems){
+        Gson gson = new Gson();
+        return gson.fromJson(jsonItems, (Type) Item[].class);
+    }
+
+    public static Item DeserializeJsomStringToItem(String jsonItems){
         Gson gson = new Gson();
         return gson.fromJson(jsonItems, (Type) Item.class);
     }
+
 }
